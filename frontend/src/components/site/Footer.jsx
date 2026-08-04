@@ -1,14 +1,17 @@
-import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram, ArrowUpRight, Download } from "lucide-react";
-import { COMPANY, SERVICES } from "../../data/content";
+import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram, ArrowUpRight } from "lucide-react";
+import { COMPANY } from "../../data/content";
+
+const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
 const QUICK = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "Projects", to: "/projects" },
-  { label: "Contact", to: "/contact" },
+  { label: "About", id: "about" },
+  { label: "Services", id: "services" },
+  { label: "Capabilities", id: "projects" },
+  { label: "Why Us", id: "why" },
+  { label: "Contact", id: "contact" },
 ];
+
+const SERVICES = ["Industrial Relocation", "Mechanical Solutions", "Electrical Solutions", "Logistics Solutions"];
 
 export const Footer = () => (
   <footer data-testid="site-footer" className="bg-ink text-white grain relative">
@@ -21,17 +24,7 @@ export const Footer = () => (
             </span>
             <span className="font-display font-extrabold tracking-tighter text-lg">FURTHMAC<span className="text-red">.</span></span>
           </div>
-          <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-            {COMPANY.tagline}. Engineering design, manufacturing, fabrication, automation & industrial relocation.
-          </p>
-          <a
-            href="/furthmac-brochure.pdf"
-            download
-            data-testid="footer-brochure"
-            className="mt-6 inline-flex items-center gap-2 border border-white/20 px-4 py-3 overline hover:bg-red hover:border-red transition-colors duration-300"
-          >
-            <Download size={15} /> Download Brochure
-          </a>
+          <p className="text-white/50 text-sm leading-relaxed max-w-xs">{COMPANY.tagline}. Industrial relocation, mechanical, electrical & logistics engineering.</p>
           <div className="flex gap-3 mt-6">
             {[Linkedin, Facebook, Instagram].map((Icon, i) => (
               <a key={i} href="#" aria-label="social" data-testid={`social-${i}`} className="h-10 w-10 grid place-items-center border border-white/15 hover:bg-red hover:border-red transition-colors duration-300">
@@ -45,8 +38,8 @@ export const Footer = () => (
           <span className="overline text-white/40 block mb-5">Quick Links</span>
           <ul className="space-y-3">
             {QUICK.map((q) => (
-              <li key={q.to}>
-                <Link to={q.to} className="text-white/70 hover:text-red transition-colors text-sm">{q.label}</Link>
+              <li key={q.id}>
+                <button onClick={() => scrollTo(q.id)} className="text-white/70 hover:text-red transition-colors text-sm">{q.label}</button>
               </li>
             ))}
           </ul>
@@ -56,9 +49,7 @@ export const Footer = () => (
           <span className="overline text-white/40 block mb-5">Services</span>
           <ul className="space-y-3">
             {SERVICES.map((s) => (
-              <li key={s.key}>
-                <Link to="/services" className="text-white/70 hover:text-red transition-colors text-sm">{s.title}</Link>
-              </li>
+              <li key={s} className="text-white/70 text-sm">{s}</li>
             ))}
           </ul>
         </div>
@@ -73,6 +64,7 @@ export const Footer = () => (
         </div>
       </div>
 
+      {/* Massive wordmark */}
       <div className="mt-16 border-t border-white/10 pt-10">
         <h2 className="font-display font-extrabold tracking-tighter leading-none text-white/10 text-[18vw] lg:text-[13rem] select-none pointer-events-none">
           FURTHMAC
@@ -81,7 +73,7 @@ export const Footer = () => (
 
       <div className="flex flex-col sm:flex-row justify-between gap-4 pt-6 border-t border-white/10">
         <p className="text-white/40 text-xs">© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</p>
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="group inline-flex items-center gap-2 text-white/40 hover:text-red transition-colors text-xs overline">
+        <button onClick={() => scrollTo("hero")} className="group inline-flex items-center gap-2 text-white/40 hover:text-red transition-colors text-xs overline">
           Back to top <ArrowUpRight size={14} className="group-hover:-translate-y-0.5 transition-transform" />
         </button>
       </div>

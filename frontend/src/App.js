@@ -1,35 +1,23 @@
-import { useEffect, useRef } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/site/ThemeProvider";
 import { Header } from "@/components/site/Header";
+import { Hero } from "@/components/site/Hero";
+import { Ticker } from "@/components/site/Ticker";
+import { About } from "@/components/site/About";
+import { Services } from "@/components/site/Services";
+import { Projects } from "@/components/site/Projects";
+import { WhyChooseUs } from "@/components/site/WhyChooseUs";
+import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
-import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
-import Home from "@/pages/Home";
-import About from "@/pages/About";
-import Services from "@/pages/Services";
-import Projects from "@/pages/Projects";
-import Contact from "@/pages/Contact";
 import "@/App.css";
 
-function ScrollToTop({ lenisRef }) {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    if (lenisRef.current) lenisRef.current.scrollTo(0, { immediate: true });
-    else window.scrollTo(0, 0);
-  }, [pathname, lenisRef]);
-  return null;
-}
-
-function App() {
-  const lenisRef = useRef(null);
-
+function useLenis() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
     const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
-    lenisRef.current = lenis;
     let raf;
     const loop = (time) => {
       lenis.raf(time);
@@ -39,31 +27,29 @@ function App() {
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
-      lenisRef.current = null;
     };
   }, []);
+}
+
+function App() {
+  useLenis();
 
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <ScrollToTop lenisRef={lenisRef} />
-        <div className="min-h-screen bg-background text-foreground antialiased selection:bg-red selection:text-white">
-          <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<Home />} />
-            </Routes>
-          </main>
-          <Footer />
-          <FloatingWhatsApp />
-          <Toaster position="bottom-left" theme="system" richColors closeButton />
-        </div>
-      </BrowserRouter>
+      <div className="min-h-screen bg-background text-foreground antialiased selection:bg-red selection:text-white">
+        <Header />
+        <main>
+          <Hero />
+          <Ticker />
+          <About />
+          <Services />
+          <Projects />
+          <WhyChooseUs />
+          <Contact />
+        </main>
+        <Footer />
+        <Toaster position="bottom-right" theme="system" richColors closeButton />
+      </div>
     </ThemeProvider>
   );
 }
