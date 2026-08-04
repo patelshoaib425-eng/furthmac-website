@@ -22,7 +22,7 @@ export const Footer = () => (
             <span className="h-6 w-6 bg-white flex items-center justify-center">
               <span className="h-2.5 w-2.5 bg-red" />
             </span>
-            <span className="font-display font-extrabold tracking-tighter text-lg">FURTHMAC <span className="text-red font-semibold">SOLUTIONS</span></span>
+            <span className="font-display font-extrabold tracking-tighter text-lg">FURTHMAC<span className="text-red">.</span></span>
           </div>
           <p className="text-white/50 text-sm leading-relaxed max-w-xs">{COMPANY.tagline}. Industrial relocation, mechanical, electrical & logistics engineering.</p>
           <div className="flex gap-3 mt-6">
