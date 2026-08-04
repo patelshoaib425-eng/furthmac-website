@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
-import { Logo } from "./Logo";
 import { COMPANY } from "../../data/content";
 
 const LINKS = [
@@ -45,9 +44,15 @@ export const Header = () => {
         <button
           data-testid="logo-home"
           onClick={() => scrollTo("hero")}
-          className="flex items-center group"
+          className="flex items-center gap-2 group"
         >
-          <Logo markClass="h-8" wordClass="text-xl" className="text-navy dark:text-white transition-colors" />
+          <span className="h-6 w-6 bg-navy flex items-center justify-center">
+            <span className="h-2.5 w-2.5 bg-red" />
+          </span>
+          <span className="font-display font-extrabold tracking-tighter text-lg leading-none">
+            FURTHMAC
+            <span className="text-red">.</span>
+          </span>
         </button>
 
         <nav className="hidden lg:flex items-center gap-8">
