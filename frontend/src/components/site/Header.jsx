@@ -49,9 +49,8 @@ export const Header = () => {
           <span className="h-6 w-6 bg-navy flex items-center justify-center">
             <span className="h-2.5 w-2.5 bg-red" />
           </span>
-          <span className="font-display font-extrabold tracking-tighter text-lg leading-none">
-            FURTHMAC
-            <span className="text-red">.</span>
+          <span className="font-display font-extrabold tracking-tighter text-base sm:text-lg leading-none">
+            FURTHMAC <span className="font-semibold text-red">SOLUTIONS</span>
           </span>
         </button>
 
