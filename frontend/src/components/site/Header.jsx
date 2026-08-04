@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
+import { ShareButton } from "./Share";
 import { COMPANY } from "../../data/content";
 
 const LINKS = [
@@ -68,6 +69,7 @@ export const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ShareButton />
           <button
             data-testid="theme-toggle"
             onClick={toggle}
