@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram, ArrowUpRight } from "lucide-react";
+import { Logo } from "./Logo";
 import { COMPANY } from "../../data/content";
 
 const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -18,11 +19,8 @@ export const Footer = () => (
     <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-10 relative z-10">
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
         <div>
-          <div className="flex items-center gap-2 mb-5">
-            <span className="h-6 w-6 bg-white flex items-center justify-center">
-              <span className="h-2.5 w-2.5 bg-red" />
-            </span>
-            <span className="font-display font-extrabold tracking-tighter text-lg">FURTHMAC<span className="text-red">.</span></span>
+          <div className="mb-5">
+            <Logo markClass="h-9" wordClass="text-2xl" className="text-white" />
           </div>
           <p className="text-white/50 text-sm leading-relaxed max-w-xs">{COMPANY.tagline}. Industrial relocation, mechanical, electrical & logistics engineering.</p>
           <div className="flex gap-3 mt-6">
