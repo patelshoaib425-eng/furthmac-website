@@ -1,55 +1,56 @@
 import { useEffect } from "react";
+import Lenis from "lenis";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/site/ThemeProvider";
+import { Header } from "@/components/site/Header";
+import { Hero } from "@/components/site/Hero";
+import { Ticker } from "@/components/site/Ticker";
+import { About } from "@/components/site/About";
+import { Services } from "@/components/site/Services";
+import { Projects } from "@/components/site/Projects";
+import { WhyChooseUs } from "@/components/site/WhyChooseUs";
+import { Contact } from "@/components/site/Contact";
+import { Footer } from "@/components/site/Footer";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
+function useLenis() {
   useEffect(() => {
-    helloWorldApi();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    let raf;
+    const loop = (time) => {
+      lenis.raf(time);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(raf);
+      lenis.destroy();
+    };
   }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+}
 
 function App() {
+  useLenis();
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-background text-foreground antialiased selection:bg-red selection:text-white">
+        <Header />
+        <main>
+          <Hero />
+          <Ticker />
+          <About />
+          <Services />
+          <Projects />
+          <WhyChooseUs />
+          <Contact />
+        </main>
+        <Footer />
+        <Toaster position="bottom-right" theme="system" richColors closeButton />
+      </div>
+    </ThemeProvider>
   );
 }
 

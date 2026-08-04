@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['Cabinet Grotesk', 'Arial Narrow', 'sans-serif'],
+        sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
+      },
+      brand: {},
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -52,7 +58,13 @@ module.exports = {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))'
-        }
+        },
+        navy: '#0B1F3A',
+        red: '#E11D2E',
+        gold: '#D4AF37',
+        charcoal: '#111111',
+        paper: '#F9FAFB',
+        ink: '#050A11'
       },
       keyframes: {
         'accordion-down': {
