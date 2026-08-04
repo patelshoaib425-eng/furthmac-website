@@ -11,7 +11,7 @@ export const LogoMark = ({ className = "" }) => (
     {/* navy A — bold angular arrow */}
     <path d="M37 66 L60 13 L81 48 L63 55 L54 32 L55 66 Z" fill="currentColor" />
     {/* red wide top trapezoid — F upper arm */}
-    <path d="M67 14 L116 14 L110 33 L73 33 Z" fill="#E11D2E" />
+    <path d="M67 14 L116 14 L110 33 L73 33 Z" fill="#E31E24" />
     {/* navy shorter middle trapezoid — F middle arm */}
     <path d="M82 39 L108 39 L104 54 L86 54 Z" fill="currentColor" />
   </svg>
