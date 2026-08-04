@@ -2,18 +2,18 @@
 // The navy mark + wordmark use currentColor so it adapts to light/dark backgrounds.
 export const LogoMark = ({ className = "" }) => (
   <svg
-    viewBox="0 0 64 84"
+    viewBox="0 0 120 70"
     className={className}
     fill="none"
     aria-hidden="true"
     role="img"
   >
-    {/* navy stem */}
-    <path d="M10 6 L26 6 L18 78 L2 78 Z" fill="currentColor" />
-    {/* red top arm (trapezoid, wider on top) */}
-    <path d="M23 6 L60 6 L54 30 L20 30 Z" fill="#E11D2E" />
-    {/* navy middle arm (shorter trapezoid) */}
-    <path d="M19 38 L50 38 L45 60 L16 60 Z" fill="currentColor" />
+    {/* navy A — bold angular arrow */}
+    <path d="M37 66 L60 13 L81 48 L63 55 L54 32 L55 66 Z" fill="currentColor" />
+    {/* red wide top trapezoid — F upper arm */}
+    <path d="M67 14 L116 14 L110 33 L73 33 Z" fill="#E11D2E" />
+    {/* navy shorter middle trapezoid — F middle arm */}
+    <path d="M82 39 L108 39 L104 54 L86 54 Z" fill="currentColor" />
   </svg>
 );
 
