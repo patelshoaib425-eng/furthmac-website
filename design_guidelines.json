@@ -1,0 +1,141 @@
+{
+  "theme": {
+    "mode": "light",
+    "support_toggle": true,
+    "archetype": "Swiss & High-Contrast mixed with Luxury",
+    "description": "Premium industrial modernism. Clean, engineered, and authoritative. Sharp edges, technical mono accents, and high-contrast photography."
+  },
+  "colors": {
+    "primary": "#0B1F3A",
+    "secondary": "#E11D2E",
+    "accents": [
+      "#D4AF37",
+      "#111111"
+    ],
+    "background_light": "#F9FAFB",
+    "background_dark": "#050A11",
+    "text_light": "#111111",
+    "text_dark": "#F9FAFB",
+    "rules": [
+      "Never use pure black or pure white. Always tint neutrals with Navy.",
+      "Use Premium Red (#E11D2E) ONLY for hover states, key kinetic triggers, or tiny technical accents.",
+      "Gold (#D4AF37) is for awards, star ratings, or premium highlights.",
+      "Buttons must be sharp and rectangular. No pill shapes. Primary button: Navy bg, white text. Hover: Red bg."
+    ]
+  },
+  "typography": {
+    "headings": "Cabinet Grotesk",
+    "body": "IBM Plex Sans",
+    "mono": "IBM Plex Mono",
+    "rules": [
+      "Headings MUST use tight tracking (tracking-tighter) and tight leading (leading-none).",
+      "Overlines and small labels MUST be uppercase, tiny (text-xs), wide spacing (tracking-[0.2em]), and use IBM Plex Mono.",
+      "Body text should be leading-relaxed.",
+      "DO NOT exceed text-6xl for the largest headings."
+    ]
+  },
+  "visual_enhancers": {
+    "borders": "1px solid #0B1F3A (Light) or #FFFFFF20 (Dark). Use harsh lines to define grids.",
+    "shadows": "Minimal. Use flat design or sharp 8px offset shadows instead of soft blurs.",
+    "radius": "rounded-none. Industrial design is sharp.",
+    "textures": "Subtle grain overlay on dark mode backgrounds. Images should feel spotlighted or treated.",
+    "overlays": "Hero overlay MUST NOT exceed bg-black/50. Prefer gradient overlays to maintain image visibility."
+  },
+  "layouts": {
+    "spacing": "Generous. Use py-24 or py-32 for section padding.",
+    "grid": "Bento Grid (Mode A) for Services and Projects. Asymmetry creates tension. Use col-span-full md:col-span-8 for hero elements.",
+    "alignment": "Left-align dense text and headings. Avoid center-everything.",
+    "container": "Max-w-7xl mx-auto px-6 or px-8."
+  },
+  "motion": {
+    "scroll": "MANDATORY: use `@studio-freight/lenis` for momentum scrolling. Standard scrolling is forbidden.",
+    "hero": "MANDATORY: Kinetic masked line-by-line reveal using framer-motion.",
+    "interactions": "Sharp scale-up on image hover. Arrow icons translate-x-1 on hover.",
+    "marquee": "Use react-fast-marquee. Slow, organic 'Editorial Ribbon' style separating Hero and About sections.",
+    "parallax": "Subtle parallax on hero image and project images using framer-motion useScroll."
+  },
+  "sections": {
+    "Header": "Fixed/Sticky. Glassmorphism (backdrop-blur-xl bg-white/70 or dark equivalent). Logo left, links center, Theme Toggle + Contact CTA right. CRITICAL: DO NOT use complete transparent background.",
+    "Hero": "Full height (min-h-[90vh]). Large kinetic text 'Engineering Excellence That Moves Industries'. Subheading left-aligned. Buttons 'Get Quote' and 'Contact on WhatsApp'. Background image with subtle parallax and mask overlay.",
+    "Marquee": "Slow moving list of capabilities/values. Monospace font, wide tracking.",
+    "AboutUs": "Numbered manifesto chapters. Grid layout. '01 Our Vision', '02 The Engineering Edge', '03 Safety Protocol'. Large numerals, sharp text.",
+    "Services": "4 Bento Grid Cards. Industrial Relocation, Mechanical, Electrical, Logistics. High contrast images inside cards, 1px border. Sharp hover zoom.",
+    "Projects": "Capabilities grid. Large high-res imagery. Hover reveals project type and a red/gold accent arrow.",
+    "WhyChooseUs": "Technical Spec Sheet look. Left side large sticky heading. Right side list of features with IBM Plex Mono numbering and crisp descriptions.",
+    "Contact": "Two columns. Left: Contact form (Shadcn Input/Textarea/Button). Right: Google Map embed + Address details + WhatsApp CTA.",
+    "Footer": "Massive 'FURTHMAC' text. 4 columns. Dark background even in light mode for strong contrast shift."
+  },
+  "component_instructions": {
+    "buttons": "Custom HTML/Tailwind for marketing layout, but Shadcn Button for forms. Sharp corners, bold text.",
+    "forms": "Use Shadcn Input, Textarea, Form. Customize to remove Vercel soft-shadow look. Use 1px sharp borders.",
+    "icons": "Use lucide-react. Prefer sharp/technical variants.",
+    "tech_stack": "React JS (.js/.jsx files NOT .tsx), Tailwind CSS, Framer Motion."
+  },
+  "media": {
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwzfHxpbmR1c3RyaWFsJTIwbWFjaGluZXJ5JTIwZmFjdG9yeXxlbnwwfHx8fDE3ODU4MTcyMjJ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "Hero Background",
+        "description": "Large industrial machinery factory interior. Darken with overlay for text contrast."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1598299803204-b73796f43289?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHxlbmdpbmVlciUyMGZhY3RvcnklMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODU4MTcyMjJ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "About Us",
+        "description": "Engineer portrait for the About/Team manifesto section."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1716191300020-b52dec5b70a8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHw0fHxpbmR1c3RyaWFsJTIwbWFjaGluZXJ5JTIwZmFjdG9yeXxlbnwwfHx8fDE3ODU4MTcyMjJ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "Services - Electrical",
+        "description": "Line of electrical equipment."
+      },
+      {
+        "url": "https://images.pexels.com/photos/27084598/pexels-photo-27084598.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "category": "Services - Mechanical",
+        "description": "Detailed heavy industrial machine part."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1684695749267-233af13276d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHw0fHxsb2dpc3RpY3MlMjB3YXJlaG91c2UlMjBpbmR1c3RyaWFsfGVufDB8fHx8MTc4NTgxNzIyMnww&ixlib=rb-4.1.0&q=85",
+        "category": "Services - Logistics",
+        "description": "Large warehouse filled with boxes."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1413882353314-73389f63b6fd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxlbGVjdHJpY2FsJTIwZW5naW5lZXJpbmclMjBpbmR1c3RyeXxlbnwwfHx8fDE3ODU4MTcyMjJ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "Projects / Capabilities",
+        "description": "Transmission towers representing heavy infrastructure."
+      }
+    ]
+  },
+  "libraries": {
+    "required": [
+      "framer-motion",
+      "@studio-freight/lenis",
+      "react-fast-marquee",
+      "lucide-react",
+      "clsx",
+      "tailwind-merge"
+    ]
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts. Use asymmetrical bento grids.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) for the Header.",
+    "You MUST NOT apply universal transition (e.g., transition: all). Add transitions for specific interactive elements only.",
+    "You MUST NOT center align the app container. No `.App { text-align: center; }`.",
+    "Use sharp rectangular modern button styles. No pill shapes for this industrial brand.",
+    "NEVER use AI assistant Emoji characters.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Ensure the hero text reveal is masked line-by-line, typical of high-end Awwwards sites.",
+    "All interactive and key informational elements MUST include a `data-testid` attribute.",
+    "Contact form must have a mailto action or basic submit handling.",
+    "Embed a real Google Map iframe for the address.",
+    "Share the guideline implementation in .js files since the project does not use TypeScript."
+  ],
+  "accessibility": {
+    "contrast": "Ensure text over images has sufficient contrast. Use dark gradient overlays (bg-gradient-to-t from-black/80 to-transparent).",
+    "motion": "Respect prefers-reduced-motion for the kinetic hero and lenis scroll.",
+    "focus": "Clear focus rings on form inputs and buttons (ring-2 ring-primary ring-offset-2)."
+  }
+}
