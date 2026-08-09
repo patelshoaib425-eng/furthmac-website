@@ -10,7 +10,6 @@ import About from "@/pages/About";
 import Services from "@/pages/Services";
 import ServiceDetail from "@/pages/ServiceDetail";
 import Industries from "@/pages/Industries";
-import Portfolio from "@/pages/Portfolio";
 import Careers from "@/pages/Careers";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
@@ -37,7 +36,6 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/services/:slug" element={<ServiceDetail />} />
               <Route path="/industries" element={<Industries />} />
-              <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
