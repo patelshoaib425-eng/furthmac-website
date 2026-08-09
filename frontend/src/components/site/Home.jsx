@@ -105,7 +105,7 @@ export const ServicesGrid = ({ compact = false, limit }) => {
           {items.map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.03}>
               <Link to={`/services/${s.slug}`} data-testid={`service-${s.slug}`} className="card-soft group block h-full overflow-hidden hover:-translate-y-1 transition-transform duration-300">
-                <div className="relative aspect-[14/5] overflow-hidden">
+                <div className="relative aspect-[12/3] overflow-hidden">
                   <img src={IMAGES[s.img] || IMAGES.hero} alt={s.title} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent" />
                   <span className="absolute top-3 left-3 h-10 w-10 rounded-xl bg-white/95 backdrop-blur text-orange grid place-items-center"><Icon name={s.icon} size={18} /></span>
