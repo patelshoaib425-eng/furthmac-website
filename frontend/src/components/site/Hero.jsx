@@ -3,10 +3,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { MaskLines } from "./Motion";
 import { COMPANY, IMAGES } from "../../data/content";
+import { useI18n } from "../../i18n/i18n";
 
 const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
 export const Hero = () => {
+  const { t } = useI18n();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -45,9 +47,9 @@ export const Hero = () => {
         className="absolute top-28 inset-x-0 z-10"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between text-white/70 overline">
-          <span>Est. Pune, India</span>
-          <span className="hidden sm:block">Mechanical / Electrical / Logistics</span>
-          <span>Ref. FMS—001</span>
+          <span>{t.hero.meta.left}</span>
+          <span className="hidden sm:block">{t.hero.meta.center}</span>
+          <span>{t.hero.meta.right}</span>
         </div>
       </motion.div>
 
@@ -59,12 +61,12 @@ export const Hero = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="overline text-red mb-6"
         >
-          / {COMPANY.tagline}
+          / {t.hero.tagline}
         </motion.p>
 
         <h1 className="font-display font-extrabold text-white tracking-tighter leading-[0.92] text-4xl sm:text-6xl lg:text-[5.5rem]">
           <MaskLines
-            lines={["Engineering", "Excellence That", "Moves Industries"]}
+            lines={t.hero.lines}
             delay={0.35}
           />
         </h1>
@@ -75,8 +77,7 @@ export const Hero = () => {
           transition={{ delay: 1.1, duration: 0.9 }}
           className="mt-8 max-w-xl text-white/80 text-base sm:text-lg leading-relaxed"
         >
-          Providing reliable industrial relocation, mechanical, electrical and
-          logistical solutions with precision and expertise.
+          {t.hero.sub}
         </motion.p>
 
         <motion.div
@@ -90,7 +91,7 @@ export const Hero = () => {
             onClick={() => scrollTo("contact")}
             className="group inline-flex items-center justify-between gap-6 bg-red text-white px-7 py-4 hover:bg-white hover:text-navy transition-colors duration-300"
           >
-            <span className="overline">Get Quote</span>
+            <span className="overline">{t.common.getQuote}</span>
             <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
           </button>
           <a
@@ -101,7 +102,7 @@ export const Hero = () => {
             className="group inline-flex items-center justify-center gap-3 border border-white/40 text-white px-7 py-4 hover:bg-white/10 transition-colors duration-300"
           >
             <MessageCircle size={18} />
-            <span className="overline">Contact on WhatsApp</span>
+            <span className="overline">{t.common.contactWhatsapp}</span>
           </a>
         </motion.div>
       </div>
