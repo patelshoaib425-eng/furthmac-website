@@ -20,7 +20,7 @@ export const Header = () => {
           <span className={`h-10 w-10 rounded-xl grid place-items-center overflow-hidden transition-colors ${scrolled || !isHome ? "bg-white ring-1 ring-steel-100" : "bg-white/95"}`}>
             <img src="/logo.jpg" alt="Furthmac Solutions logo" className="h-full w-full object-contain" />
           </span>
-          <span className={`font-display font-bold tracking-tight text-lg ${scrolled || !isHome ? "text-navy" : "text-white"}`}>Furthmac</span>
+          <span className={`font-display font-bold tracking-tight text-base sm:text-lg ${scrolled || !isHome ? "text-navy" : "text-white"}`}>Furthmac Solutions</span>
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((l) => l.label === "Services" ? (
