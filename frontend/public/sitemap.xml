@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.furthmac.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.furthmac.com/about</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services</loc><priority>0.9</priority></url>
+  <url><loc>https://www.furthmac.com/services/industrial-automation</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services/plc-programming</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services/scada-development</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services/control-panel-design</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services/electrical-engineering</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services/mechanical-engineering</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services/epc-projects</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services/cad-design</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/services/welding</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/services/fabrication</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/services/engineering-consultancy</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/services/installation-commissioning</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/services/annual-maintenance</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/services/technical-support</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/services/relocation</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/industries</loc><priority>0.8</priority></url>
+  <url><loc>https://www.furthmac.com/portfolio</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/careers</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/blog</loc><priority>0.7</priority></url>
+  <url><loc>https://www.furthmac.com/contact</loc><priority>0.9</priority></url>
+  <url><loc>https://www.furthmac.com/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://www.furthmac.com/terms</loc><priority>0.3</priority></url>
+  <url><loc>https://www.furthmac.com/cookie-policy</loc><priority>0.3</priority></url>
+</urlset>

@@ -1,132 +1,63 @@
 import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
-import { ShareButton } from "./Share";
-import { COMPANY } from "../../data/content";
-
-const LINKS = [
-  { label: "About", id: "about" },
-  { label: "Services", id: "services" },
-  { label: "Capabilities", id: "projects" },
-  { label: "Why Us", id: "why" },
-  { label: "Contact", id: "contact" },
-];
-
-const scrollTo = (id) => {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-};
+import { Menu, X, ChevronDown } from "lucide-react";
+import { NAV, COMPANY, SERVICES } from "../../data/content";
 
 export const Header = () => {
-  const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
+  const [svcOpen, setSvcOpen] = useState(false);
+  const loc = useLocation();
+  useEffect(() => { const on = () => setScrolled(window.scrollY > 20); window.addEventListener("scroll", on); return () => window.removeEventListener("scroll", on); }, []);
+  useEffect(() => setOpen(false), [loc.pathname]);
+  const isHome = loc.pathname === "/";
   return (
-    <motion.header
-      data-testid="site-header"
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-      className={`fixed top-0 inset-x-0 z-50 transition-[background-color,border-color,padding] duration-300 border-b ${
-        scrolled
-          ? "backdrop-blur-xl bg-background/80 border-border py-3"
-          : "bg-background/40 backdrop-blur-md border-transparent py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-        <button
-          data-testid="logo-home"
-          onClick={() => scrollTo("hero")}
-          className="flex items-center gap-2 group"
-        >
-          <span className="h-6 w-6 bg-navy flex items-center justify-center">
-            <span className="h-2.5 w-2.5 bg-red" />
+    <motion.header data-testid="site-header" initial={{ y: -60 }} animate={{ y: 0 }} transition={{ duration: 0.6 }}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || !isHome ? "glass border-b border-steel-100 py-3 shadow-[0_1px_0_rgba(10,42,94,0.05)]" : "bg-transparent py-5"}`}>
+      <div className="container-x flex items-center justify-between gap-6">
+        <Link to="/" data-testid="logo-home" className="flex items-center gap-2.5 group">
+          <span className={`h-9 w-9 rounded-xl grid place-items-center transition-colors ${scrolled || !isHome ? "bg-navy" : "bg-white/95"}`}>
+            <span className={`font-display font-extrabold text-sm ${scrolled || !isHome ? "text-white" : "text-navy"}`}>F</span>
           </span>
-          <span className="font-display font-extrabold tracking-tighter text-base sm:text-lg leading-none">
-            FURTHMAC<span className="text-red">.</span>
-          </span>
-        </button>
-
-        <nav className="hidden lg:flex items-center gap-8">
-          {LINKS.map((l) => (
-            <button
-              key={l.id}
-              data-testid={`nav-${l.id}`}
-              onClick={() => scrollTo(l.id)}
-              className="overline text-foreground/70 hover:text-red transition-colors duration-200"
-            >
-              {l.label}
-            </button>
+          <span className={`font-display font-bold tracking-tight text-lg ${scrolled || !isHome ? "text-navy" : "text-white"}`}>Furthmac</span>
+        </Link>
+        <nav className="hidden lg:flex items-center gap-1">
+          {NAV.map((l) => l.label === "Services" ? (
+            <div key={l.to} onMouseEnter={() => setSvcOpen(true)} onMouseLeave={() => setSvcOpen(false)} className="relative">
+              <NavLink to={l.to} data-testid={`nav-${l.label.toLowerCase()}`} className={({isActive}) => `px-3 py-2 text-sm font-medium inline-flex items-center gap-1 transition-colors ${isActive ? "text-orange" : (scrolled || !isHome ? "text-navy hover:text-orange" : "text-white/90 hover:text-white")}`}>
+                Services <ChevronDown size={14} />
+              </NavLink>
+              <AnimatePresence>
+                {svcOpen && (
+                  <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }} transition={{ duration: 0.15 }} className="absolute top-full left-0 mt-1 w-[520px] p-3 bg-white rounded-2xl shadow-xl border border-steel-100 grid grid-cols-2 gap-1">
+                    {SERVICES.map((s) => (
+                      <Link key={s.slug} to={`/services/${s.slug}`} className="text-sm px-3 py-2 rounded-lg hover:bg-steel-50 text-navy">{s.title}</Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
+            <NavLink key={l.to} to={l.to} data-testid={`nav-${l.label.toLowerCase()}`} className={({isActive}) => `px-3 py-2 text-sm font-medium transition-colors ${isActive ? "text-orange" : (scrolled || !isHome ? "text-navy hover:text-orange" : "text-white/90 hover:text-white")}`}>{l.label}</NavLink>
           ))}
         </nav>
-
-        <div className="flex items-center gap-3">
-          <ShareButton />
-          <button
-            data-testid="theme-toggle"
-            onClick={toggle}
-            aria-label="Toggle theme"
-            className="h-10 w-10 grid place-items-center border border-border hover:border-red transition-colors duration-200"
-          >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-          <button
-            data-testid="header-quote-btn"
-            onClick={() => scrollTo("contact")}
-            className="hidden sm:inline-flex bg-navy text-white overline px-5 py-3 hover:bg-red transition-colors duration-200"
-          >
-            Get Quote
-          </button>
-          <button
-            data-testid="mobile-menu-btn"
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Menu"
-            className="lg:hidden h-10 w-10 grid place-items-center border border-border"
-          >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
+        <div className="hidden md:flex items-center gap-3">
+          <Link to="/contact" data-testid="header-cta" className="btn-primary text-sm py-3 px-5">Get a Free Consultation</Link>
         </div>
+        <button data-testid="mobile-menu-btn" onClick={() => setOpen(o => !o)} className={`lg:hidden h-10 w-10 grid place-items-center rounded-xl ${scrolled || !isHome ? "text-navy bg-steel-50" : "text-white bg-white/10"}`} aria-label="Menu">
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </div>
-
       <AnimatePresence>
         {open && (
-          <motion.div
-            data-testid="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden overflow-hidden bg-background border-t border-border"
-          >
-            <div className="px-6 py-4 flex flex-col">
-              {LINKS.map((l) => (
-                <button
-                  key={l.id}
-                  onClick={() => {
-                    scrollTo(l.id);
-                    setOpen(false);
-                  }}
-                  className="py-3 text-left font-display font-bold text-xl tracking-tight border-b border-border/60 last:border-0"
-                >
-                  {l.label}
-                </button>
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="lg:hidden overflow-hidden glass border-t border-steel-100">
+            <div className="container-x py-4 flex flex-col">
+              {NAV.map((l) => (
+                <NavLink key={l.to} to={l.to} className="py-3 text-navy text-lg font-semibold border-b border-steel-100 last:border-0">{l.label}</NavLink>
               ))}
-              <a
-                href={`https://wa.me/${COMPANY.phoneDigits}`}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 bg-red text-white overline px-5 py-4 text-center"
-              >
-                WhatsApp Us
-              </a>
+              <Link to="/contact" className="btn-primary mt-4 justify-center">Get a Free Consultation</Link>
+              <a href={`tel:${COMPANY.phone}`} className="mt-3 text-navy font-semibold text-center">{COMPANY.phone}</a>
             </div>
           </motion.div>
         )}
