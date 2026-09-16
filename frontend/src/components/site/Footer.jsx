@@ -9,8 +9,8 @@ export const Footer = () => (
       <div className="grid gap-10 lg:gap-12 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <Link to="/" className="flex items-center gap-2.5">
-            <span className="h-11 w-11 rounded-xl overflow-hidden ring-1 ring-white/10">
-              <img src="/logo.png" alt="Furthmac Solutions logo" className="h-full w-full object-cover" />
+            <span className="h-11 w-11 grid place-items-center">
+              <img src="/logo.png" alt="Furthmac Solutions logo" className="h-full w-full object-contain" />
             </span>
             <span className="font-display font-bold text-xl">Furthmac Solutions</span>
           </Link>

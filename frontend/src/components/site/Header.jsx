@@ -17,8 +17,8 @@ export const Header = () => {
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || !isHome ? "glass border-b border-steel-100 py-3 shadow-[0_1px_0_rgba(10,42,94,0.05)]" : "bg-transparent py-5"}`}>
       <div className="container-x flex items-center justify-between gap-6">
         <Link to="/" data-testid="logo-home" className="flex items-center gap-2.5 group">
-          <span className="h-10 w-10 rounded-xl overflow-hidden ring-1 ring-white/10">
-            <img src="/logo.png" alt="Furthmac Solutions logo" className="h-full w-full object-cover" />
+          <span className="h-10 w-10 grid place-items-center">
+            <img src="/logo.png" alt="Furthmac Solutions logo" className="h-full w-full object-contain" />
           </span>
           <span className={`font-display font-bold tracking-tight text-base sm:text-lg ${scrolled || !isHome ? "text-navy" : "text-white"}`}>Furthmac Solutions</span>
         </Link>
