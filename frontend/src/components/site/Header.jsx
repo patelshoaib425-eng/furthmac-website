@@ -17,7 +17,7 @@ export const Header = () => {
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || !isHome ? "glass border-b border-steel-100 py-3 shadow-[0_1px_0_rgba(10,42,94,0.05)]" : "bg-transparent py-5"}`}>
       <div className="container-x flex items-center justify-between gap-6">
         <Link to="/" data-testid="logo-home" className="flex items-center group">
-          <img src={scrolled || !isHome ? "/wordmark-dark.png" : "/wordmark.png"} alt="Furthmac Solutions" className="h-[50px] sm:h-[62px] w-auto object-contain" />
+          <img src={scrolled || !isHome ? "/wordmark-dark.png" : "/wordmark.png"} alt="Furthmac Solutions" className="h-14 sm:h-[68px] w-auto object-contain" />
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((l) => l.label === "Services" ? (
