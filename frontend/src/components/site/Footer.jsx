@@ -8,11 +8,8 @@ export const Footer = () => (
     <div className="relative container-x pt-20 pb-8">
       <div className="grid gap-10 lg:gap-12 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <Link to="/" className="flex items-center gap-2.5">
-            <span className="h-11 w-11 grid place-items-center">
-              <img src="/logo.png" alt="Furthmac Solutions logo" className="h-full w-full object-contain" />
-            </span>
-            <img src="/wordmark.png" alt="Furthmac Solutions" className="h-9 w-auto object-contain" />
+          <Link to="/" className="flex items-center">
+            <img src="/wordmark.png" alt="Furthmac Solutions" className="h-11 w-auto object-contain" />
           </Link>
           <p className="mt-5 text-white/60 leading-relaxed max-w-sm">Industrial Automation, PLC Programming, Electrical & Mechanical Engineering, EPC Projects and Engineering Consultancy across India.</p>
           <div className="mt-6 flex flex-col gap-2 text-sm text-white/70">

@@ -16,11 +16,8 @@ export const Header = () => {
     <motion.header data-testid="site-header" initial={{ y: -60 }} animate={{ y: 0 }} transition={{ duration: 0.6 }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || !isHome ? "glass border-b border-steel-100 py-3 shadow-[0_1px_0_rgba(10,42,94,0.05)]" : "bg-transparent py-5"}`}>
       <div className="container-x flex items-center justify-between gap-6">
-        <Link to="/" data-testid="logo-home" className="flex items-center gap-2.5 group">
-          <span className="h-10 w-10 grid place-items-center">
-            <img src="/logo.png" alt="Furthmac Solutions logo" className="h-full w-full object-contain" />
-          </span>
-          <img src={scrolled || !isHome ? "/wordmark-dark.png" : "/wordmark.png"} alt="Furthmac Solutions" className="h-7 sm:h-8 w-auto object-contain" />
+        <Link to="/" data-testid="logo-home" className="flex items-center group">
+          <img src={scrolled || !isHome ? "/wordmark-dark.png" : "/wordmark.png"} alt="Furthmac Solutions" className="h-9 sm:h-10 w-auto object-contain" />
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((l) => l.label === "Services" ? (
