@@ -12,7 +12,7 @@ export const Footer = () => (
             <span className="h-11 w-11 grid place-items-center">
               <img src="/logo.png" alt="Furthmac Solutions logo" className="h-full w-full object-contain" />
             </span>
-            <span className="font-display font-bold text-xl">Furthmac Solutions</span>
+            <img src="/wordmark.png" alt="Furthmac Solutions" className="h-9 w-auto object-contain" />
           </Link>
           <p className="mt-5 text-white/60 leading-relaxed max-w-sm">Industrial Automation, PLC Programming, Electrical & Mechanical Engineering, EPC Projects and Engineering Consultancy across India.</p>
           <div className="mt-6 flex flex-col gap-2 text-sm text-white/70">

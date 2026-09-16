@@ -20,7 +20,7 @@ export const Header = () => {
           <span className="h-10 w-10 grid place-items-center">
             <img src="/logo.png" alt="Furthmac Solutions logo" className="h-full w-full object-contain" />
           </span>
-          <span className={`font-display font-bold tracking-tight text-base sm:text-lg ${scrolled || !isHome ? "text-navy" : "text-white"}`}>Furthmac Solutions</span>
+          <img src={scrolled || !isHome ? "/wordmark-dark.png" : "/wordmark.png"} alt="Furthmac Solutions" className="h-7 sm:h-8 w-auto object-contain" />
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((l) => l.label === "Services" ? (
