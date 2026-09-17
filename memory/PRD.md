@@ -1,39 +1,56 @@
 # Furthmac Solutions — Corporate Website (PRD)
 
 ## Problem Statement
-Premium, enterprise-level, fully responsive marketing website for "Furthmac Solutions",
-an industrial relocation & installation engineering company (Pune, India).
-Goal: trust, engineering expertise, safety, industrial excellence — Awwwards-level craft.
+Premium, enterprise-level, fully responsive multi-page corporate website for "Furthmac Solutions",
+an industrial engineering company (www.furthmac.com). Siemens/ABB-style corporate design.
+STRICT RULE: no fake testimonials, no fake client logos, no invented project case studies or statistics.
 
 ## Brand
 - Name: Furthmac Solutions | Tagline: "Your Trusted Engineering Partner"
-- Email: Info@furthmacsolutions.com | Phone/WhatsApp: +91 9420582563
-- Address: SR. No. 107/1, Village Nere, Taluka Mulshi, Pune – 411033, Maharashtra, India
-- Colors: Navy #0B1F3A, Red #E11D2E, Gold #D4AF37, Paper #F9FAFB, Ink #050A11
-- Fonts: Cabinet Grotesk (display), IBM Plex Sans (body), IBM Plex Mono (labels)
+- Email: info@furthmac.com | Domain: https://www.furthmac.com (hardcoded in all canonical/meta/schema)
+- Theme: Dark navy #0A2A5E, white, orange #FF6A1A
+- Logo assets: /app/frontend/public/wordmark.png and wordmark-dark.png (backgrounds removed via Python PIL;
+  regenerate programmatically if modified). Header/Footer switch logo by scroll state; size h-[60px] sm:h-[76px].
 
 ## Architecture
-- Frontend: React (CRA/craco), Tailwind, framer-motion, lenis (smooth scroll),
-  react-fast-marquee, shadcn ui (Input/Textarea/Select/Sonner). Light default + dark toggle.
-- Backend: FastAPI + MongoDB. Emergent-managed Resend email.
-- Sections: Header, Hero (masked reveal + parallax), Marquee, About (manifesto),
-  Services (bento), Projects/Capabilities, Why Choose Us, Contact (form+map+WhatsApp), Footer.
+- Frontend: React + React Router (multi-page SPA), Tailwind, Framer Motion, Lenis smooth scroll, Lucide icons.
+- Backend: FastAPI + Motor (MongoDB). Resend for contact-form email.
+- Pages: Home, About, Services (index + 15 dynamic detail pages at /services/:slug),
+  Industries, Careers (placeholder), Blog (placeholder), Contact, Legal, 404.
+- Key files:
+  - /app/frontend/src/App.js — routing + Lenis setup
+  - /app/frontend/src/data/content.js — all services/industries/text data
+  - /app/frontend/src/pages/ServiceDetail.jsx — dynamic template for 15 services
+  - /app/frontend/src/components/site/Header.jsx, Footer.jsx — logo switching logic
+  - /app/frontend/public/index.html, robots.txt, sitemap.xml — SEO, www.furthmac.com only
 
 ## Backend
-- POST /api/contact — stores enquiry in `contacts`, emails company (best-effort).
-- GET /api/contact — list enquiries.
-- Env: EMERGENT_EMAIL_KEY, EMAIL_FROM_NAME, COMPANY_EMAIL.
+- POST /api/contact — saves enquiry to `contacts`, triggers Resend email.
+- DB schema `contacts`: { _id, name, company, email, phone, service, message, created_at }
+- Env: MONGO_URL, DB_NAME, Resend key, EMAIL_FROM_NAME, etc. (backend/.env)
 
-## Implemented (2026-08-04)
-- Full single-page site, all 7 sections, both themes, SEO meta, responsive.
-- Contact form verified end-to-end via UI (stores + success toast).
-- Google Map embed for Pune address; WhatsApp deep links.
+## Implemented
+- Full multi-page architecture with React Router; all core pages built.
+- 15 dynamic service detail pages.
+- Contact form saves to MongoDB + Resend email trigger (verified end-to-end).
+- Domain hardening: all preview/temporary URLs removed; canonical/meta hardcoded to www.furthmac.com.
+- Logo assets processed (background removal) and sized in Header/Footer (60px mobile / 76px desktop).
+- Portfolio/Testimonials sections removed entirely (no-fake-content rule).
 
 ## Known Notes
-- Email delivery to Info@furthmacsolutions.com is currently BLOCKED as "undeliverable"
-  by the provider because the domain mailbox/MX is not live yet. Submissions ALWAYS
-  save to MongoDB regardless. Will deliver once the real inbox/domain is active.
+- Email DELIVERY to info@furthmac.com is pending client-side MX record activation for the domain;
+  DB saving works perfectly regardless.
+- Careers and Blog pages are intentionally empty placeholder structures awaiting real client content.
 
-## Backlog (P1/P2)
-- Admin view for enquiries; blog/insights; multi-page routing; services detail pages;
-  testimonials/logos once real clients exist; sitemap.xml + robots.txt.
+## Deployment Readiness (checked 2026-07, static analysis — report only, user deferred fix)
+- ONE BLOCKER: backend/.env line 5 `EMAIL_FROM_NAME=Furthmac Solutions` is unquoted with spaces;
+  fix = `EMAIL_FROM_NAME="Furthmac Solutions"`. User chose to leave as-is for now.
+- All other checks PASSED: env usage (REACT_APP_BACKEND_URL, MONGO_URL/DB_NAME), ports (3000/8001),
+  supervisor config, CORS, no hardcoded secrets, no compilation errors, query limits, no destructive startup.
+
+## Backlog
+- P1: Populate Careers page with real content (currently placeholder).
+- P1: Populate Blog page with real content (currently placeholder).
+- P1: Client activates MX records for info@furthmac.com so Resend delivery works.
+- P2: Fix EMAIL_FROM_NAME quoting before deployment.
+- P2: Admin view for enquiries; testimonials/logos only once real clients exist.
