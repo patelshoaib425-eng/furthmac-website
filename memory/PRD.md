@@ -42,15 +42,16 @@ STRICT RULE: no fake testimonials, no fake client logos, no invented project cas
   DB saving works perfectly regardless.
 - Careers and Blog pages are intentionally empty placeholder structures awaiting real client content.
 
-## Deployment Readiness (checked 2026-07, static analysis — report only, user deferred fix)
-- ONE BLOCKER: backend/.env line 5 `EMAIL_FROM_NAME=Furthmac Solutions` is unquoted with spaces;
-  fix = `EMAIL_FROM_NAME="Furthmac Solutions"`. User chose to leave as-is for now.
-- All other checks PASSED: env usage (REACT_APP_BACKEND_URL, MONGO_URL/DB_NAME), ports (3000/8001),
-  supervisor config, CORS, no hardcoded secrets, no compilation errors, query limits, no destructive startup.
+## Deployment Status (2026-07)
+- FIXED: backend/.env EMAIL_FROM_NAME now quoted; backend restarted; /api/contact smoke-tested OK.
+- VERIFIED via DNS-over-HTTPS: MX records for furthmac.com ARE active (mx1/mx2.hostinger.com) — Resend delivery to info@furthmac.com should now work.
+- Health check re-run: PASS, zero blockers. App is deployment-ready.
+- DEPLOY BLOCKED (billing): first deploy costs 50 ECUs/month, user balance is 34 ECUs. User must add credits or upgrade, then re-dispatch deploy (no charge acknowledgment was collected).
+- PENDING (user-side): custom domain cutover — www.furthmac.com currently CNAMEs to furthmac.com → Hostinger (2.57.91.91). After deploy, user must attach domain in platform UI and point DNS to the deployment.
 
 ## Backlog
+- P1: Add credits / upgrade plan, then deploy and attach www.furthmac.com.
 - P1: Populate Careers page with real content (currently placeholder).
 - P1: Populate Blog page with real content (currently placeholder).
-- P1: Client activates MX records for info@furthmac.com so Resend delivery works.
-- P2: Fix EMAIL_FROM_NAME quoting before deployment.
+- P1: Send a real test enquiry post-deploy to confirm Resend delivery to info@furthmac.com (MX now live).
 - P2: Admin view for enquiries; testimonials/logos only once real clients exist.
