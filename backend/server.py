@@ -102,6 +102,33 @@ def _build_email_html(c: ContactCreate) -> str:
 
 
 async def _send_company_email(c: ContactCreate) -> None:
+    msg = EmailMessage()
+
+    msg["Subject"] = f"New Enquiry from {c.name} — Furthmac Solutions"
+    msg["From"] = f"{EMAIL_FROM_NAME} <{SMTP_USERNAME}>"
+    msg["To"] = COMPANY_EMAIL
+    msg["Reply-To"] = c.email
+
+    msg.set_content(
+        f"""
+New enquiry received from Furthmac website.
+
+Name: {c.name}
+Email: {c.email}
+
+Message:
+{c.message}
+"""
+    )
+
+    msg.add_alternative(_build_email_html(c), subtype="html")
+
+    def send_email():
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as smtp:
+            smtp.login(SMTP_USERNAME, SMTP_PASSWORD)
+            smtp.send_message(msg)
+
+    await asyncio.to_thread(send_email)
     payload = {
         "to": [COMPANY_EMAIL],
         "subject": f"New Enquiry from {c.name} — Furthmac Solutions",
