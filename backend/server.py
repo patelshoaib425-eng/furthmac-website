@@ -20,10 +20,12 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Email (Emergent managed Resend) — base url is a CONSTANT (survives deployment)
-EMAIL_BASE_URL = "https://integrations.emergentagent.com"
-EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
-EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
+# Email (Hostinger SMTP)
+SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.hostinger.com")
+SMTP_PORT = int(os.environ.get("SMTP_PORT", "465"))
+SMTP_USERNAME = os.environ["SMTP_USERNAME"]
+SMTP_PASSWORD = os.environ["SMTP_PASSWORD"]
+EMAIL_FROM_NAME = os.environ.get("EMAIL_FROM_NAME", "Furthmac Solutions")
 COMPANY_EMAIL = os.environ["COMPANY_EMAIL"]
 
 app = FastAPI(title="Furthmac Solutions API")
