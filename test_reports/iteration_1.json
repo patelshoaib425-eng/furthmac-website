@@ -1,0 +1,25 @@
+{
+  "summary": "Frontend-only testing of static HTML/CSS port at http://localhost:8080. Verified all 27 pages load (200), home hero/header/footer/contact-section render, header transitions transparent -> .scrolled on scroll, Services dropdown in HTML contains 15 service links, 3 service detail pages (industrial-automation, plc-programming, relocation) have correct breadcrumbs (../index.html, ../services.html), 3 FAQ <details> per page open on click, 63 anchors incl. 4 related-service cards using ../ relative paths. Contact form action=https://formsubmit.co/info@furthmac.com with all required hidden fields (_subject/_next/_captcha/_template/_autoresponse), required attributes on name/email/message, service <select> has 17 options (placeholder + 15 services + Other), WhatsApp link https://wa.me/917558647831, Google Maps iframe loads. Legal/404/thanks pages render with correct H1. Mobile 375px: menu button visible + toggles mobile nav; no horizontal overflow on home or service pages (scrollWidth=375). Floating contact FAB: wa.me + tel: + mailto:info@furthmac.com. sitemap.xml and robots.txt served with correct https://www.furthmac.com URLs. Only issue: repeated lucide console warning that 'instagram' icon name is not found in the UMD build.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "lucide icons", "issue": "data-lucide=\"instagram\" is not recognized by the loaded lucide UMD build; console emits 17 warnings and the Instagram icon does not render as SVG (footer/social). Consider replacing with an inline SVG or a supported lucide name (e.g., using the newer ESM build or switching to a different icon).", "selector": "[data-lucide=\"instagram\"]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: fix Instagram icon rendering by inlining an <svg> or upgrading/replacing the lucide script so 'instagram' resolves; currently emits repeated console warnings and the icon is not shown."
+  ],
+  "critical_code_review_comments": [
+    "generate.py should ideally emit only currently-supported lucide icon names to avoid runtime warnings.",
+    "Multiple identical warnings suggest lucide.createIcons() may be invoked more than once per page — consider guarding to a single call."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Static site served by python3 -m http.server 8080 from /app/static-site. All 27 pages verified functional. React app at /app/frontend was NOT touched. Contact form was intentionally NOT submitted (would email real inbox); only attributes were verified. If Instagram icon is replaced, re-run home + footer verification only."
+}
