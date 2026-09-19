@@ -23,11 +23,9 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Email (Hostinger SMTP)
-SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.hostinger.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", "465"))
-SMTP_USERNAME = os.environ["SMTP_USERNAME"]
-SMTP_PASSWORD = os.environ["SMTP_PASSWORD"]
+# Email (Resend API)
+RESEND_API_KEY = os.environ["RESEND_API_KEY"]
+RESEND_FROM_EMAIL = os.environ.get("RESEND_FROM_EMAIL", "info@furthmac.com")
 EMAIL_FROM_NAME = os.environ.get("EMAIL_FROM_NAME", "Furthmac Solutions")
 COMPANY_EMAIL = os.environ["COMPANY_EMAIL"]
 
@@ -105,15 +103,9 @@ def _build_email_html(c: ContactCreate) -> str:
 
 
 async def _send_company_email(c: ContactCreate) -> None:
-    msg = EmailMessage()
+    subject = f"New Enquiry from {c.name} - Furthmac Solutions"
 
-    msg["Subject"] = f"New Enquiry from {c.name} — Furthmac Solutions"
-    msg["From"] = f"{EMAIL_FROM_NAME} <{SMTP_USERNAME}>"
-    msg["To"] = COMPANY_EMAIL
-    msg["Reply-To"] = c.email
-
-    msg.set_content(
-        f"""
+    text_content = f"""
 New enquiry received from Furthmac website.
 
 Name: {c.name}
@@ -122,7 +114,32 @@ Email: {c.email}
 Message:
 {c.message}
 """
-    )
+
+    payload = {
+        "from": f"{EMAIL_FROM_NAME} <{RESEND_FROM_EMAIL}>",
+        "to": [COMPANY_EMAIL],
+        "reply_to": [c.email],
+        "subject": subject,
+        "text": text_content,
+        "html": _build_email_html(c),
+    }
+
+    headers = {
+        "Authorization": f"Bearer {RESEND_API_KEY}",
+        "Content-Type": "application/json",
+    }
+
+    async with httpx.AsyncClient(timeout=20.0) as client:
+        response = await client.post(
+            "https://api.resend.com/emails",
+            headers=headers,
+            json=payload,
+        )
+
+    if response.status_code >= 400:
+        raise RuntimeError(
+            f"Resend API error {response.status_code}: {response.text}"
+        )
 
     msg.add_alternative(_build_email_html(c), subtype="html")
 
