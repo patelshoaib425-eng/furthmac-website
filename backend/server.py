@@ -5,9 +5,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 import httpx
-import asyncio
-import smtplib
-from email.message import EmailMessage
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
@@ -141,28 +138,7 @@ Message:
             f"Resend API error {response.status_code}: {response.text}"
         )
 
-    msg.add_alternative(_build_email_html(c), subtype="html")
-
-    def send_email():
-        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as smtp:
-            smtp.login(SMTP_USERNAME, SMTP_PASSWORD)
-            smtp.send_message(msg)
-
-    await asyncio.to_thread(send_email)
-    payload = {
-        "to": [COMPANY_EMAIL],
-        "subject": f"New Enquiry from {c.name} — Furthmac Solutions",
-        "html": _build_email_html(c),
-        "from_name": EMAIL_FROM_NAME,
-        "contact_email": c.email,
-    }
-    async with httpx.AsyncClient(timeout=30) as http_client:
-        resp = await http_client.post(
-            f"{EMAIL_BASE_URL}/api/v1/email/send",
-            headers={"X-Email-Key": EMAIL_KEY},
-            json=payload,
-        )
-    resp.raise_for_status()
+    
 
 
 # ---------- Routes ----------
